@@ -1,2 +1,2 @@
-# Arduino Timer Projekt
+# Arduino Timer Project
  Arduino timer, for clocking working hours, with display and diods, buttons and SD card reader. Project for Modul-B.
