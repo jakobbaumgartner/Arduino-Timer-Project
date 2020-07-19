@@ -56,7 +56,13 @@ void setup() {
   
   // reads projects file and returns array of projects
   String projekti = projectsRead();
-   
+  //Serial.print("\nNUMBER OF PROJECTS:  ");
+  //Serial.print(projectsList(projekti));
+  Serial.print("\n\n");
+   String* listOfProjects =  projectsList(projekti);
+    Serial.print("\n\n");
+    Serial.print(listOfProjects[3]);
+    
 }
 
 void loop() {

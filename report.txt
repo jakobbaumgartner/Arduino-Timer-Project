@@ -27,15 +27,20 @@ I am gonna use a file on SD card, that program will automatically read every tim
 
 'projects_file.txt'
 
-1;ModulB_LAB;
-2;ModulB_P;
-3;IntLes;
-4;Game;
+1;ModulB_LAB#
+2;ModulB_P#
+3;IntLes#
+4;Game#
 
 It would be prettier and better to use json, but I guess it doesn't really matter in this case, might be even better not to use it since Arduino has limited memory. 
 
 The thing is that C++ sux and I am starting to hate it deeply. It's creator Bjorne must have really hated developers when he created it. Compared to python or javascript it just sux. Also it has been a while since I created anything in it so ...
 
 So it turns out that File.read() returns buffer I don't know, charater by character? I don't like it, I like strings. Of course Arduino documentation doesn't mention it, but in the Stream documentation, on which Arduino SD is based is mentioned method readString() which reads buffer to String. Thankfully it is implemented / works in SD library also.
+
+Okay, we have got projects. I am more than a bit rusty in C++, also Arduino C++ is a bit different I think. However it is (slowly) comming back to me. I allocated a list of strings and returned a pointer to it from function (not sure if there is actually another way to do it in C++, who cares, it works).
+
+
+
 
 

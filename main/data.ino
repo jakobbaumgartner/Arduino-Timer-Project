@@ -48,3 +48,45 @@ String projectsRead () {
 
   return projekti;
 }
+
+
+String* projectsList (String projekti) {
+  /*
+   * Parses the projects file output and displays it in a nice (pointer to) array of strings.
+   */
+
+  int lengthofprojekti = projekti.length();
+  int currentletter = 0;
+  int currentproject = 0;
+  int numberOfProjects = 0;
+  int starting = 0;
+  int stoping = 0;
+
+  for (currentletter = 0; currentletter < lengthofprojekti; currentletter++) {
+    if (projekti[currentletter] == '#') {
+      numberOfProjects++;
+    }
+}
+
+   String* projectsList = new String[numberOfProjects];
+
+ for (currentletter = 0; currentletter < lengthofprojekti; currentletter++) {
+    if (projekti[currentletter] == ';') {
+      starting = currentletter+1;
+    }
+
+    if (projekti[currentletter] == '#') {
+      stoping = currentletter;
+      projectsList[currentproject] = projekti.substring(starting, stoping);
+      currentproject++;
+    }
+   
+}
+
+for (currentletter = 0; currentletter < numberOfProjects; currentletter++) {
+    Serial.print(projectsList[currentletter]);
+    Serial.print(" - ");
+}
+
+ return projectsList;
+}
