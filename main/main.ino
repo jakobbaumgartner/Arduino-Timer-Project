@@ -3,6 +3,21 @@
 
 LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
+/*
+  SD card read/write
+  
+  The circuit:
+   SD card attached to SPI bus as follows:
+ ** MOSI - pin 51
+ ** MISO - pin 50
+ ** CLK - pin 52
+ ** CS - pin 53 
+
+*/
+
+#include <SPI.h>
+#include <SD.h>
+
 
   int mode = 0;
   /*
@@ -22,7 +37,7 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
   // Message should not be longer than 16 chars or it should be in two lines.
   String line_one = "";
-  String line_two = "Loading ...";
+  String line_two = "";
   String line_one_old = "";
   String line_two_old = "";
   
@@ -37,11 +52,10 @@ void setup() {
   lcd.begin();
   lcd.backlight();
 
-  lcd.setCursor(0,1);
-  lcd.print("Loading ...");
+  line_two = "Loading ...";
   
-  
- 
+  // reads projects file and returns array of projects
+  String projekti = projectsRead();
    
 }
 
@@ -68,6 +82,8 @@ void loop() {
     line_two_old = line_two;
     
     }
+
+  
 
  
 
