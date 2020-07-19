@@ -1,0 +1,31 @@
+CONNECT DISPLAY	
+
+I first started with figuring out how to connect display. I had more trouble than I care to admit, because I have never done anything like it before. However as per usual with arduino, everything is mostly straight forward. 
+
+I say mostly, because display uses SPI protocol for communication. This protocol needs address of device, which for some reason wasn't the same as it was mentioned in specifications. It took me a while, but once I figured out to use handy (arduino) WIRE library to check for it, it was solved.
+
+
+CONNECT SD CARD
+
+Pretty straight forward, except not ... The thing is that SD cards are getting kind of rare this days, so I had in my drawer only one tiny 16MB one, which uses formating FAT8 and can't be formatted to FAT16. This SD card reader doesn't want to read FAT8. So I tried SD card from my phone (16GB), which was ofcourse too big for this reader to read it. Finally I got some card which is like 2GB from my brother and it finally worked. 
+
+https://www.arduino.cc/en/Reference/SD
+https://forum.arduino.cc/index.php?topic=165170.0
+
+
+BREAKING CODE INTO FILES
+
+File structure:
+-> main
+-> data
+-> display
+
+SETTINGS FILE
+
+All right, now I need some kind of data with which I can set different 'projects' that I want to record time on.
+I am gonna use a file on SD card, that program will automatically read every time the controler starts and set categorys in its memory.
+
+'projects_file.txt'
+
+It would be prettier and better to use json, but I guess it doesn't really matter in this case, might be even better not to use it since Arduino has limited memory. 
+
