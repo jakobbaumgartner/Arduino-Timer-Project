@@ -90,3 +90,22 @@ for (currentletter = 0; currentletter < numberOfProjects; currentletter++) {
 
  return projectsList;
 }
+
+int numOfProjects (String projekti) {
+  /*
+   * Parses the projects file output and returns number of projects.
+   */
+
+  int lengthofprojekti = projekti.length();
+  int currentletter = 0;
+  int numberOfProjects = 0;
+
+  for (currentletter = 0; currentletter < lengthofprojekti; currentletter++) {
+    if (projekti[currentletter] == '#') {
+      numberOfProjects++;
+    }
+}
+  
+
+ return numberOfProjects;
+}

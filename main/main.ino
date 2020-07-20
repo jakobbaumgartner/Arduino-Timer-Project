@@ -40,6 +40,8 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
   String line_two = "";
   String line_one_old = "";
   String line_two_old = "";
+  String* listOfProjects = NULL;
+  int numberOfProjects = 0;
   
 
 void setup() {
@@ -59,10 +61,9 @@ void setup() {
   //Serial.print("\nNUMBER OF PROJECTS:  ");
   //Serial.print(projectsList(projekti));
   Serial.print("\n\n");
-   String* listOfProjects =  projectsList(projekti);
-    Serial.print("\n\n");
-    Serial.print(listOfProjects[3]);
-    
+   listOfProjects =  projectsList(projekti);
+   numberOfProjects = numOfProjects(projekti);
+       
 }
 
 void loop() {
