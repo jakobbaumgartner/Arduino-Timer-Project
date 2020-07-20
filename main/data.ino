@@ -50,6 +50,7 @@ String projectsRead () {
 }
 
 
+
 String* projectsList (String projekti) {
   /*
    * Parses the projects file output and displays it in a nice (pointer to) array of strings.
@@ -91,6 +92,8 @@ for (currentletter = 0; currentletter < numberOfProjects; currentletter++) {
  return projectsList;
 }
 
+
+
 int numOfProjects (String projekti) {
   /*
    * Parses the projects file output and returns number of projects.
@@ -106,6 +109,5 @@ int numOfProjects (String projekti) {
     }
 }
   
-
  return numberOfProjects;
 }

@@ -20,17 +20,21 @@ File structure:
 -> data
 -> display
 
+
 SETTINGS FILE
 
 All right, now I need some kind of data with which I can set different 'projects' that I want to record time on.
 I am gonna use a file on SD card, that program will automatically read every time the controler starts and set categorys in its memory. Up to 5 categorys.
 
+-------------------------------------------------------------------
 'projects_file.txt'
-
+-------------------------------------------------------------------
 1;ModulB_LAB#
 2;ModulB_P#
 3;IntLes#
 4;Game#
+-------------------------------------------------------------------
+
 
 It would be prettier and better to use json, but I guess it doesn't really matter in this case, might be even better not to use it since Arduino has limited memory. 
 
@@ -41,6 +45,27 @@ So it turns out that File.read() returns buffer I don't know, charater by charac
 Okay, we have got projects. I am more than a bit rusty in C++, also Arduino C++ is a bit different I think. However it is (slowly) comming back to me. I allocated a list of strings and returned a pointer to it from function (not sure if there is actually another way to do it in C++, who cares, it works).
 
 
+DATA STRUCTURE
 
+We need some kind of file to save the recorded data. Actually I want two different files. One to save input for each session and one to save total time for each project.
 
+Lets call them: 'stats.txt' and 'sessions.txt'.
 
+-------------------------------------------------------------------
+'stats.txt'
+-------------------------------------------------------------------
+PROJECTID ; MINUTES #
+1;25#
+2;5#
+3;0#
+4;41#
+5;0#
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+'sessions.txt'
+-------------------------------------------------------------------
+SESSIONID # PROJECTID $ MINUTES#
+1;2$23#
+2;2$3#
+3;44$5#
