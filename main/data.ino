@@ -1,21 +1,23 @@
 
-String projectsRead () {
+String projectsRead()
+{
 
   /* 
    *  Reads projects file on SD card and returns text as a String. 
    */
 
   File projectsFile;
-  String projekti="";
-    
+  String projekti = "";
+
   Serial.print("Initializing SD card...");
 
-  if (!SD.begin(53)) {
+  if (!SD.begin(53))
+  {
     Serial.println("ERROR");
     Serial.println("initialization failed!");
-    
+    // FIX!!! WHAT HAPPENS IN READING ERROR?
   }
-  
+
   Serial.println("initialization done.");
 
   // open the file. note that only one file can be open at a time,
@@ -23,35 +25,102 @@ String projectsRead () {
 
   // open the file for reading:
   projectsFile = SD.open("projects.txt");
-  
-  if (projectsFile) {
-    
-       Serial.println("Projects:");
 
-       // read from the file until there's nothing else in it:
-        while (projectsFile.available()) {
-      
-            projekti = projectsFile.readString();
-  
-             }
+  if (projectsFile)
+  {
 
-       Serial.print(projekti);
-       
-      // close the file:
-      projectsFile.close();
-  } 
-      else {
-        // if the file didn't open, print an error:
-        Serial.println("ERROR");
-        Serial.println("error opening projects.txt");
-      }
+    // read from the file until there's nothing else in it:
+    while (projectsFile.available())
+    {
+
+      projekti = projectsFile.readString();
+    }
+
+    //Serial.print(projekti);
+
+    // close the file:
+    projectsFile.close();
+  }
+  else
+  {
+    // if the file didn't open, print an error:
+    Serial.println("ERROR");
+    Serial.println("error opening projects.txt");
+  }
 
   return projekti;
 }
 
+int counterIDRead()
+{
 
+  /* 
+  Sessions are numbered, each has it's own unique counterID. In case the device is restarted, 
+  it can get its next ID here.
+  */
 
-String* projectsList (String projekti) {
+  File counterIDFile;
+  int counterID;
+  String counterIDString = "";
+
+  Serial.print("\nInitializing SD card...");
+
+  if (!SD.begin(53))
+  {
+    Serial.println("ERROR");
+    Serial.println("initialization failed!");
+    return 0;
+  }
+
+  Serial.println("initialization done.");
+
+  // open the file. note that only one file can be open at a time,
+  // so you have to close this one before opening another.
+
+  // open the file for reading:
+  counterIDFile = SD.open("pid.txt");
+
+  if (counterIDFile)
+  {
+
+    // read from the file until there's nothing else in it:
+    while (counterIDFile.available())
+    {
+
+      counterIDString = counterIDFile.readString();
+    }
+
+    //  converts read text to int and increments it by 1
+    counterID = counterIDString.toInt();
+    //  writes incremented counterID back to SD card
+
+    Serial.print("\nNext ID: ");
+    Serial.print(counterIDString);
+    // close the file:
+    counterIDFile.close();
+    delay(50);
+    counterIDFile = SD.open("pid.txt", FILE_WRITE);
+
+    if (counterIDFile)
+    {
+      Serial.println("Writing to SD ...");
+      counterIDFile.println("78");
+      delay(50);
+      counterIDFile.close();
+    }
+    else
+    {
+      // if the file didn't open, print an error:
+      Serial.println("ERROR");
+      Serial.println("error opening second time pid.txt");
+    }
+
+    return 0;
+  }
+}
+
+String *projectsList(String projekti)
+{
   /*
    * Parses the projects file output and displays it in a nice (pointer to) array of strings.
    */
@@ -63,38 +132,42 @@ String* projectsList (String projekti) {
   int starting = 0;
   int stoping = 0;
 
-  for (currentletter = 0; currentletter < lengthofprojekti; currentletter++) {
-    if (projekti[currentletter] == '#') {
+  for (currentletter = 0; currentletter < lengthofprojekti; currentletter++)
+  {
+    if (projekti[currentletter] == '#')
+    {
       numberOfProjects++;
     }
-}
+  }
 
-   String* projectsList = new String[numberOfProjects];
+  String *projectsList = new String[numberOfProjects];
 
- for (currentletter = 0; currentletter < lengthofprojekti; currentletter++) {
-    if (projekti[currentletter] == ';') {
-      starting = currentletter+1;
+  for (currentletter = 0; currentletter < lengthofprojekti; currentletter++)
+  {
+    if (projekti[currentletter] == ';')
+    {
+      starting = currentletter + 1;
     }
 
-    if (projekti[currentletter] == '#') {
+    if (projekti[currentletter] == '#')
+    {
       stoping = currentletter;
       projectsList[currentproject] = projekti.substring(starting, stoping);
       currentproject++;
     }
-   
-}
+  }
 
-for (currentletter = 0; currentletter < numberOfProjects; currentletter++) {
+  for (currentletter = 0; currentletter < numberOfProjects; currentletter++)
+  {
     Serial.print(projectsList[currentletter]);
     Serial.print(" - ");
+  }
+
+  return projectsList;
 }
 
- return projectsList;
-}
-
-
-
-int numOfProjects (String projekti) {
+int numOfProjects(String projekti)
+{
   /*
    * Parses the projects file output and returns number of projects.
    */
@@ -103,11 +176,13 @@ int numOfProjects (String projekti) {
   int currentletter = 0;
   int numberOfProjects = 0;
 
-  for (currentletter = 0; currentletter < lengthofprojekti; currentletter++) {
-    if (projekti[currentletter] == '#') {
+  for (currentletter = 0; currentletter < lengthofprojekti; currentletter++)
+  {
+    if (projekti[currentletter] == '#')
+    {
       numberOfProjects++;
     }
-}
-  
- return numberOfProjects;
+  }
+
+  return numberOfProjects;
 }
