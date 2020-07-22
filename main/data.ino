@@ -18,7 +18,7 @@ String projectsRead()
     // FIX!!! WHAT HAPPENS IN READING ERROR?
   }
 
-  Serial.println("initialization done.");
+  Serial.println("initialization done.\n");
 
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
@@ -93,7 +93,7 @@ int getNextID()
     counterID = counterIDString.toInt();
 
 
-    Serial.print("\nNext ID: ");
+    Serial.print("\n\nNext ID: ");
     Serial.print(counterIDString);
     // close the file:
     counterIDFile.close();
@@ -107,8 +107,10 @@ int getNextID()
 
     if (counterIDFile)
     {
-      Serial.println("\nWriting to SD ...");
+
       counterIDFile.println(counterID+1);
+      Serial.print("\nSaved ID: ");
+      Serial.println(counterID+1);
       
       counterIDFile.close();
     }

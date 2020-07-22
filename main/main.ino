@@ -46,8 +46,10 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
 void setup() {
 
+
   // start serial 
   Serial.begin(9600);
+  Serial.print("\n\n\n\n---rebooted---\n---.-.-.-.-.-.-.-.--.---\n\n\n");
   
   
   // initialize the LCD
@@ -55,19 +57,43 @@ void setup() {
   lcd.backlight();
 
   line_two = "Loading ...";
+
+  
   
   // reads projects file and returns array of projects
   String projekti = projectsRead();
 
-   listOfProjects =  projectsList(projekti);
-   numberOfProjects = numOfProjects(projekti);
+  listOfProjects =  projectsList(projekti);
+  numberOfProjects = numOfProjects(projekti);
 
-   getNextID();
+
+
+  // set input ports
+  pinMode(2, INPUT);
+  pinMode(3, INPUT);
+  pinMode(4, INPUT);
+  pinMode(5, INPUT);
+  pinMode(12, INPUT);
+
 
        
 }
 
 void loop() {
+
+  Serial.print("\n");
+  Serial.print(buttonPressed());
+  delay(100);
+
+
+
+
+
+
+
+
+
+  
 
   if(line_one != line_one_old || line_two != line_two_old) {
 

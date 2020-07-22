@@ -5,6 +5,7 @@ I first started with figuring out how to connect display. I had more trouble tha
 I say mostly, because display uses SPI protocol for communication. This protocol needs address of device, which for some reason wasn't the same as it was mentioned in specifications. It took me a while, but once I figured out to use handy (arduino) WIRE library to check for it, it was solved.
 
 
+###########################################################################################################################
 CONNECT SD CARD
 
 Pretty straight forward, except not ... The thing is that SD cards are getting kind of rare this days, so I had in my drawer only one tiny 16MB one, which uses formating FAT8 and can't be formatted to FAT16. This SD card reader doesn't want to read FAT8. So I tried SD card from my phone (16GB), which was ofcourse too big for this reader to read it. Finally I got some card which is like 2GB from my brother and it finally worked. 
@@ -13,6 +14,7 @@ https://www.arduino.cc/en/Reference/SD
 https://forum.arduino.cc/index.php?topic=165170.0
 
 
+###########################################################################################################################
 BREAKING CODE INTO FILES
 
 File structure:
@@ -21,6 +23,7 @@ File structure:
 -> display
 
 
+###########################################################################################################################
 SETTINGS FILE
 
 All right, now I need some kind of data with which I can set different 'projects' that I want to record time on.
@@ -45,6 +48,7 @@ So it turns out that File.read() returns buffer I don't know, charater by charac
 Okay, we have got projects. I am more than a bit rusty in C++, also Arduino C++ is a bit different I think. However it is (slowly) comming back to me. I allocated a list of strings and returned a pointer to it from function (not sure if there is actually another way to do it in C++, who cares, it works).
 
 
+###########################################################################################################################
 DATA STRUCTURE
 
 We need some kind of file to save the recorded data. Actually I want two different files. One to save input for each session and one to save total time for each project.
@@ -70,6 +74,8 @@ SESSIONID # PROJECTID $ MINUTES#
 2;2$3#
 3;44$5#
 
+
+###########################################################################################################################
 PROBLEM: SD card dead
 
 Writing / Reading not working. Not sure why, could be SD card, could be reader, could be smtg else. I think I saw somewhere that this SD reader has a habit of destroying cards, could just be an old card ... Fuck me.
@@ -90,4 +96,23 @@ We are gonna read the old data, than delete the file and create new input with n
 SHIIIT, it works. :)
 
 
+###########################################################################################################################
+CONNECT BUTTONS AND LED DIODS
 
+Blue LED pins: 28 30 32 34 36
+Red LED pin: 31
+Button MODE: 2
+Button MENU: 3
+Button PREVIOUS: 4
+Button NEXT: 5
+Button CONFIRM: 12
+
+Connected all buttons and led diods. Decided to go with a blue-white buttons look and blue diods, with one additional red one, for SD status or errors.
+
+
+###########################################################################################################################
+BUTTON PRESSED FUNCTION 
+
+Okay let's first implement the ''buttonPressed()'' function. It should show the number of pressed button in serial monitor.
+
+That works, alright. Up next ... some kind of buffer register, that prevents button bouncing. (debouncing).
