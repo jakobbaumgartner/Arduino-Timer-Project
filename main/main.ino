@@ -59,12 +59,11 @@ void setup() {
   // reads projects file and returns array of projects
   String projekti = projectsRead();
 
-
-  //Serial.print("\n\n");
    listOfProjects =  projectsList(projekti);
    numberOfProjects = numOfProjects(projekti);
 
-   counterIDRead();
+   getNextID();
+
        
 }
 

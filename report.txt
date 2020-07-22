@@ -69,3 +69,25 @@ SESSIONID # PROJECTID $ MINUTES#
 1;2$23#
 2;2$3#
 3;44$5#
+
+PROBLEM: SD card dead
+
+Writing / Reading not working. Not sure why, could be SD card, could be reader, could be smtg else. I think I saw somewhere that this SD reader has a habit of destroying cards, could just be an old card ... Fuck me.
+
+Steps to fix it:
+1. format  --- MAYBE
+2. try another SD reader   --- MAYBE
+(After formating I forgot to change SD pin in code.)
+( 3. get a new SD card )
+( 4. cry in corner )
+
+HULLY SHIT ... it is fixed. What was the bug? Well one of the above probably. Not sure which. Who gives a shit, it works
+
+Okay, soooo next task. Get ID to write to a new file. Read/Write seems to be working. The problem now is that I need to delete old input. 
+
+We are gonna read the old data, than delete the file and create new input with new ID. If we lose power in the exact moment we will lose ID. However this is an edge case, lets just leave it at that.
+
+SHIIIT, it works. :)
+
+
+

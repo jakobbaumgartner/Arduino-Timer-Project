@@ -51,32 +51,31 @@ String projectsRead()
   return projekti;
 }
 
-int counterIDRead()
+int getNextID()
 {
 
   /* 
-  Sessions are numbered, each has it's own unique counterID. In case the device is restarted, 
-  it can get its next ID here.
+  * Sessions are numbered, each has it's own unique counterID. When a new session, the function is invoked to get the next free ID.
   */
 
   File counterIDFile;
   int counterID;
   String counterIDString = "";
 
-  Serial.print("\nInitializing SD card...");
-
+  
   if (!SD.begin(53))
   {
     Serial.println("ERROR");
-    Serial.println("initialization failed!");
+    Serial.println("Error with SD card. failed!");
     return 0;
   }
 
-  Serial.println("initialization done.");
 
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
 
+
+  // Get nextID from the file
   // open the file for reading:
   counterIDFile = SD.open("pid.txt");
 
@@ -90,32 +89,37 @@ int counterIDRead()
       counterIDString = counterIDFile.readString();
     }
 
-    //  converts read text to int and increments it by 1
+    //  converts read text to int 
     counterID = counterIDString.toInt();
-    //  writes incremented counterID back to SD card
+
 
     Serial.print("\nNext ID: ");
     Serial.print(counterIDString);
     // close the file:
     counterIDFile.close();
-    delay(50);
+
+
+    Serial.println("\nRemoving pid.txt...");
+    SD.remove("pid.txt");
+
+    Serial.println("\nCreating pid.txt and writing nextID in it.");
     counterIDFile = SD.open("pid.txt", FILE_WRITE);
 
     if (counterIDFile)
     {
-      Serial.println("Writing to SD ...");
-      counterIDFile.println("78");
-      delay(50);
+      Serial.println("\nWriting to SD ...");
+      counterIDFile.println(counterID+1);
+      
       counterIDFile.close();
     }
     else
     {
       // if the file didn't open, print an error:
       Serial.println("ERROR");
-      Serial.println("error opening second time pid.txt");
+      Serial.println("Error writing nextID to pid.txt");
     }
 
-    return 0;
+    return counterID;
   }
 }
 
