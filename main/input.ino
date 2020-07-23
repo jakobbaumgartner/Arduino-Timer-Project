@@ -39,9 +39,9 @@ int buttonPressed () {
     Serial.print("\n");
     for(int i =0; i <100; i++) {
       shiftRegister[i] = digitalRead(12);
-      delay(10);
-      Serial.print("\n");
-      Serial.print(i);
+      delay(2);
+      //Serial.print("\n");
+      //Serial.print(i);
 
       // because we are stopping the main execution, we have to refresh display in this loop
       lcd.clear();
@@ -79,6 +79,14 @@ int buttonPressed () {
         lcd.setCursor(0,1);
         lcd.print("CONFIRMED.");
       }
+      else {
+          lcd.clear();
+          lcd.setCursor(0,0);
+          lcd.print(line_one);
+          lcd.setCursor(0,1);
+          lcd.print(line_two);
+          }
+        }
       }
       
     

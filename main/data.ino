@@ -223,12 +223,12 @@ void saveSessionStatus () {
   sessionsFile = SD.open("sessions.txt", FILE_WRITE);
 
 
-    Serial.print("\nSaving session: " + String(recordedID) + ";" + String(recordedProject) + "$" + String(floor((millis()-recordedStarted)/1000)) + "#");
+    Serial.print("\n" + String(recordedID) + "?" + String(listOfProjects[recordedProject]) + ";" + String(recordedProject) + "$" + String(floor((millis()-recordedStarted)/1000)) + "#");
 
     if (sessionsFile)
     {
 
-      sessionsFile.println(String(recordedID) + ";" + String(recordedProject) + "$" + String(floor((millis()-recordedStarted)/1000)) + "#");
+      sessionsFile.println(String(recordedID) + "?" + String(listOfProjects[recordedProject]) + ";" + String(recordedProject) + "$" + String(floor((millis()-recordedStarted)/1000)) + "#");
      
       
       sessionsFile.close();

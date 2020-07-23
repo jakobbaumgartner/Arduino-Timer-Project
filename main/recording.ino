@@ -1,6 +1,5 @@
 void recordingMODE () {
    if(menu == 0) {
-
       
       if (button == 12) {
        
@@ -22,17 +21,36 @@ void recordingMODE () {
 
         // stop recording
         else {
+           saveSessionStatus();
            recordedStatus = false;
            lastSavedMIN=0;
+           recordedTime[0] = 0;
+           recordedTime[1] = 0;
+           recordedTime[2] = 0;
+           recordedStarted = 0;
 
            Serial.print("\nRecording stopped!");
           
-           
+            lcd.clear();
+            lcd.setCursor(0,0);
+            lcd.print(line_one);
+            lcd.setCursor(0,1);
+            lcd.print(line_two);
+          }
           }
 
       // to prevent starting and stopping right away
       delay(3000);
       }
+
+    // change current project
+      if(button == 4) {
+        changeProject(-1);
+        }
+
+       if(button == 5) {
+        changeProject(1);
+        }
 
       line_one = listOfProjects[currentProject];
       line_two = String(recordedTime[0]) + "h : " + String(recordedTime[1]) + "m : " + String(recordedTime[2]) + "s";
@@ -40,8 +58,21 @@ void recordingMODE () {
       //Serial.print(recordedID);
     
     }
+}
 
-      
+void changeProject(int changeDirection) {  
+      if (changeDirection == -1) {
+        // go one project back
+        if(currentProject>0) {
+          currentProject--;
+          }
+        }
+
+      if (changeDirection == 1){
+        if(numberOfProjects-1>currentProject) {
+          currentProject++;
+          }
+      }
       
 }
 
