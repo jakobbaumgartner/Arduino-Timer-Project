@@ -42,7 +42,15 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
   String line_two_old = "";
   String* listOfProjects = NULL;
   int numberOfProjects = 0;
-  
+
+  int two = 0;
+  int three = 0;
+  int four = 0;
+  int five = 0;
+  int twelve = 0;
+
+  int mill=0;
+
 
 void setup() {
 
@@ -75,15 +83,31 @@ void setup() {
   pinMode(5, INPUT);
   pinMode(12, INPUT);
 
+ 
 
        
 }
 
 void loop() {
 
-  Serial.print("\n");
-  Serial.print(buttonPressed());
-  delay(100);
+  buttonPressed();
+  /*
+  if(millis()-mill > 500) {
+    mill = millis();
+    
+    Serial.print("\n");
+    Serial.print(two);
+     Serial.print(" -- ");
+    Serial.print(three);
+    Serial.print(" -- ");
+    Serial.print(four);
+    Serial.print(" -- ");
+    Serial.print(five);
+    Serial.print(" -- ");
+    Serial.print(twelve);
+    
+  }
+  */
 
 
 

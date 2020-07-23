@@ -116,3 +116,7 @@ BUTTON PRESSED FUNCTION
 Okay let's first implement the ''buttonPressed()'' function. It should show the number of pressed button in serial monitor.
 
 That works, alright. Up next ... some kind of buffer register, that prevents button bouncing. (debouncing).
+
+Lets implement two modes. First one just prevents presses for the next some ms. The second one kind of works as a long press. It uses shift buffer and the sum of buffer must me more than smtg for button to be activated.
+
+While delays are awful in sistems, they shouldn't be noticable in this one. So buttons get 250ms delays to prevent bouncing, also button 12 gets shifting register.
