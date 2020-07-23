@@ -76,38 +76,29 @@ void setup() {
 
 
 
-  // set input ports
+  // set input pins
   pinMode(2, INPUT);
   pinMode(3, INPUT);
   pinMode(4, INPUT);
   pinMode(5, INPUT);
   pinMode(12, INPUT);
 
- 
+  // set output pins
+  pinMode(28, OUTPUT);
+  pinMode(30, OUTPUT);
+  pinMode(32, OUTPUT);
+  pinMode(34, OUTPUT);
+  pinMode(36, OUTPUT);
+  pinMode(31, OUTPUT);
 
-       
+
 }
 
 void loop() {
 
   buttonPressed();
-  /*
-  if(millis()-mill > 500) {
-    mill = millis();
-    
-    Serial.print("\n");
-    Serial.print(two);
-     Serial.print(" -- ");
-    Serial.print(three);
-    Serial.print(" -- ");
-    Serial.print(four);
-    Serial.print(" -- ");
-    Serial.print(five);
-    Serial.print(" -- ");
-    Serial.print(twelve);
-    
-  }
-  */
+
+  
 
 
 

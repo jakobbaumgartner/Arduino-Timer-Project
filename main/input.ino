@@ -87,7 +87,5 @@ int buttonPressed () {
     Serial.print(buttonNumber);
   }
     
-   
-
   return buttonNumber;
 }

@@ -119,4 +119,14 @@ That works, alright. Up next ... some kind of buffer register, that prevents but
 
 Lets implement two modes. First one just prevents presses for the next some ms. The second one kind of works as a long press. It uses shift buffer and the sum of buffer must me more than smtg for button to be activated.
 
-While delays are awful in sistems, they shouldn't be noticable in this one. So buttons get 250ms delays to prevent bouncing, also button 12 gets shifting register.
+While delays are awful in sistems, they shouldn't be problematic in this one. So buttons get 250ms delays to prevent bouncing, also button '12' gets shifting register.
+
+
+###########################################################################################################################
+LED DIODS
+
+Setted pinMode for all LED diods and tested them. They all work. They are a bit dim, probably the resistors are a bit too strong, but for now I will just let it be. In fact I might just leave it as it is, because I hate too strong LED diods on devices. It becomes distracting.
+
+
+
+
