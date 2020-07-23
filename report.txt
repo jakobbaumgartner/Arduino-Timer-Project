@@ -128,5 +128,11 @@ LED DIODS
 Setted pinMode for all LED diods and tested them. They all work. They are a bit dim, probably the resistors are a bit too strong, but for now I will just let it be. In fact I might just leave it as it is, because I hate too strong LED diods on devices. It becomes distracting.
 
 
+###########################################################################################################################
+TIMER UPDATE
+
+Spent a couple of hours on updating the bloody counter. No idea what the fuck didn't work. Changed data types, changed code ... who knows. Probably something funky with the floor() function. Anyways now it works.
+
+
 
 

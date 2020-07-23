@@ -18,8 +18,8 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
 #include <SPI.h>
 #include <SD.h>
 
-
-  int mode = 0;
+  int button;
+  int mode = 1;
   /*
    * This variable is used to set mode that device operates in.
    * 0 welcome screen
@@ -40,16 +40,21 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
   String line_two = "";
   String line_one_old = "";
   String line_two_old = "";
+
+  // Projects 
   String* listOfProjects = NULL;
   int numberOfProjects = 0;
+  // currently open project
+  int currentProject = 0;
 
-  int two = 0;
-  int three = 0;
-  int four = 0;
-  int five = 0;
-  int twelve = 0;
+  //RECORDING
 
-  int mill=0;
+    bool recordedStatus = false;
+    int recordedID = NULL;
+     // time recorded h/m/s
+    int recordedTime[3]= {0,0,0};
+    int recordedProject= NULL;
+    unsigned long recordedStarted = NULL;
 
 
 void setup() {
@@ -96,7 +101,29 @@ void setup() {
 
 void loop() {
 
-  buttonPressed();
+  button=buttonPressed();
+
+  recordingUPDATE();
+
+  // changing mode button
+  if(button == 2) {
+    if(mode == 1) {mode = 2;}
+    else if (mode == 2) {mode = 1;}
+    Serial.print("\nMODE: ");
+    Serial.print(mode);
+  }
+
+  
+
+  // recording mode
+  if(mode == 1) {
+   recordingMODE();
+  }
+
+  // stats mode
+  if(mode == 2) {
+    
+  }
 
   
 
@@ -120,12 +147,12 @@ void loop() {
     lcd.setCursor(0,1);
     lcd.print(line_two);
   
-    Serial.print("\n\n -- NEW DISPLAY -- ");
-    Serial.print("\n------------------------------------------\n");
-    Serial.print(line_one);
-    Serial.print("\n");
-    Serial.print(line_two);
-    Serial.print("\n------------------------------------------\n");
+//    Serial.print("\n\n -- NEW DISPLAY -- ");
+//    Serial.print("\n------------------------------------------\n");
+//    Serial.print(line_one);
+//    Serial.print("\n");
+//    Serial.print(line_two);
+//    Serial.print("\n------------------------------------------\n");
 
     line_one_old = line_one;
     line_two_old = line_two;

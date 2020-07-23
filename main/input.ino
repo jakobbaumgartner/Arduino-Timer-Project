@@ -1,6 +1,6 @@
 int buttonPressed () {
 
-  int buttonNumber = NULL;
+  int buttonNumber = 0;
   int shiftRegister[100];
   int sum=0;
 
@@ -11,22 +11,22 @@ int buttonPressed () {
 
   if(digitalRead(2)) {
     buttonNumber=2;
-    two++;
+    
     delay(250);
     }
   if(digitalRead(3)) {
     buttonNumber=3;
-    three++;
+    
     delay(250);
     }
   if(digitalRead(4)) {
     buttonNumber=4;
-    four++;
+   
     delay(250);
     }
   if(digitalRead(5)) {
     buttonNumber=5;
-    five++;
+   
     delay(250);
     }
 
