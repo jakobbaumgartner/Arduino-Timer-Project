@@ -16,11 +16,14 @@ void recordingMODE () {
           recordedProject = currentProject;
           Serial.print(";   Started: ");
           Serial.print(recordedStarted);
+
+          saveSessionStatus();
         }
 
         // stop recording
         else {
            recordedStatus = false;
+           lastSavedMIN=0;
 
            Serial.print("\nRecording stopped!");
           
@@ -45,14 +48,16 @@ void recordingMODE () {
 void recordingUPDATE () {
 
   // update h/m/s
-  if(recordedStatus) {
+ 
 //    Serial.print(millis());
    
     unsigned long timern = millis();
     recordedTime[0] = (timern-recordedStarted)/3600000;
     recordedTime[1] = (timern-recordedStarted)/60000;
     recordedTime[2] = floor((timern-recordedStarted)/1000)-recordedTime[1]*60-recordedTime[0]*3600;
-   
-  }
-  
+
+   if(lastSavedMIN<recordedTime[1]) {
+    saveSessionStatus();
+    lastSavedMIN++;
+   }
 }

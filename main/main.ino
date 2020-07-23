@@ -55,6 +55,7 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
     int recordedTime[3]= {0,0,0};
     int recordedProject= NULL;
     unsigned long recordedStarted = NULL;
+    int lastSavedMIN = 0;
 
 
 void setup() {
@@ -103,7 +104,7 @@ void loop() {
 
   button=buttonPressed();
 
-  recordingUPDATE();
+   if(recordedStatus){recordingUPDATE();}
 
   // changing mode button
   if(button == 2) {

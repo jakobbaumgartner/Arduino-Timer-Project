@@ -15,7 +15,8 @@ String projectsRead()
   {
     Serial.println("ERROR");
     Serial.println("initialization failed!");
-    // FIX!!! WHAT HAPPENS IN READING ERROR?
+    
+    return "error";
   }
 
   Serial.println("initialization done.\n");
@@ -191,4 +192,59 @@ int numOfProjects(String projekti)
   }
 
   return numberOfProjects;
+}
+
+void saveSessionStatus () {
+  /*
+   * This function saves session status.
+   */
+
+/* 
+  * Sessions are numbered, each has it's own unique counterID. When a new session, the function is invoked to get the next free ID.
+  */
+
+  File sessionsFile;
+
+  
+  if (!SD.begin(53))
+  {
+    Serial.println("ERROR");
+    Serial.println("Error with SD card. failed!");
+    return 0;
+  }
+
+
+  // open the file. note that only one file can be open at a time,
+  // so you have to close this one before opening another.
+
+
+  // Get nextID from the file
+  // open the file for reading:
+  sessionsFile = SD.open("sessions.txt", FILE_WRITE);
+
+
+    Serial.print("\nSaving session: " + String(recordedID) + ";" + String(recordedProject) + "$" + String(floor((millis()-recordedStarted)/1000)) + "#");
+
+    if (sessionsFile)
+    {
+
+      sessionsFile.println(String(recordedID) + ";" + String(recordedProject) + "$" + String(floor((millis()-recordedStarted)/1000)) + "#");
+     
+      
+      sessionsFile.close();
+    }
+    else
+    {
+      // if the file didn't open, print an error:
+      Serial.println("ERROR");
+      Serial.println("Error writing sessions!");
+    }
+
+  }
+
+
+void saveStatistics () {
+  /*
+   * This function saves statistics (total time on projects).
+   */
 }
