@@ -46,6 +46,7 @@ void recordingMODE ();
   String line_two = "";
   String line_one_old = "";
   String line_two_old = "";
+  bool screen_interrupt = false;
 
   // Projects 
   String* listOfProjects = NULL;

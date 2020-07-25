@@ -144,3 +144,13 @@ Anyways problem for tomorrow.
 I was not wrong. Turns out the way Arduino IDE compiles projects is to copy other files into the main file by alphabet order. If function is defined out of this order it doesn't work. So I used prototyping of not working functions to fix it.
 
 
+###########################################################################################################################
+MAX LENGTH
+
+Implemented, 10h.
+
+
+###########################################################################################################################
+STATISTICS
+
+Need two things. Displaying stats and saving and updating stats.

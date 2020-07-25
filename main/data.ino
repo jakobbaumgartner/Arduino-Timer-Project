@@ -199,9 +199,6 @@ void saveSessionStatus () {
    * This function saves session status.
    */
 
-/* 
-  * Sessions are numbered, each has it's own unique counterID. When a new session, the function is invoked to get the next free ID.
-  */
 
   File sessionsFile;
 
@@ -217,8 +214,6 @@ void saveSessionStatus () {
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
 
-
-  // Get nextID from the file
   // open the file for reading:
   sessionsFile = SD.open("sessions.txt", FILE_WRITE);
 

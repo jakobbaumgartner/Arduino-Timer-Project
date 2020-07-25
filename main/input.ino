@@ -82,9 +82,9 @@ int buttonPressed () {
          }
          else {
              lcd.print("REC. STOPPING ...");
+             delay(1000);
          }
          
-        
       }
       else {
           lcd.clear();

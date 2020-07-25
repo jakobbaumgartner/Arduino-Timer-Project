@@ -2,7 +2,13 @@ void recordingMODE () {
    if(menu == 0) {
       
       if (button == 12) {
-       
+        
+
+       if(screen_interrupt) {
+        
+        screen_interrupt=false;
+       }
+       else {
         // start recording
         if (!recordedStatus){
           
@@ -53,12 +59,14 @@ void recordingMODE () {
         changeProject(1);
         }
 
-      line_one = listOfProjects[currentProject];
-      line_two = String(recordedTime[0]) + "h : " + String(recordedTime[1]) + "m : " + String(recordedTime[2]) + "s";
-      //Serial.print("\nTime: \n");
-      //Serial.print(recordedID);
-    
+      if(!screen_interrupt) {
+          line_one = listOfProjects[currentProject];
+          line_two = String(recordedTime[0]) + "h : " + String(recordedTime[1]) + "m : " + String(recordedTime[2]) + "s";
+        
+      }
+   
     }
+}
 
 
 void changeProject(int changeDirection) {  
@@ -88,8 +96,31 @@ void recordingUPDATE () {
     recordedTime[1] = (timern-recordedStarted)/60000;
     recordedTime[2] = floor((timern-recordedStarted)/1000)-recordedTime[1]*60-recordedTime[0]*3600;
 
-   if(lastSavedMIN<recordedTime[1]) {
+   if(lastSavedMIN<recordedTime[1] && !screen_interrupt) {
     saveSessionStatus();
     lastSavedMIN++;
+
+    if (lastSavedMIN>0) {
+          // stop recording
+           //saveSessionStatus();
+           recordedStatus = false;
+           lastSavedMIN=0;
+           recordedTime[0] = 0;
+           recordedTime[1] = 0;
+           recordedTime[2] = 0;
+           recordedStarted = 0;
+
+           Serial.print("\nMax length reached!");
+           Serial.print("\nRecording stopped.");
+           screen_interrupt = true;
+           line_one = "RECORDING TOO LONG!";
+           line_two = "MAX LENGTH 10H";
+          
+            lcd.clear();
+            lcd.setCursor(0,0);
+            lcd.print(line_one);
+            lcd.setCursor(0,1);
+            lcd.print(line_two);
+    }
    }
 }
