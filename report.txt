@@ -163,3 +163,9 @@ I created statistics()  function that accept argument bool increment. If it is t
 SD LED
 
 SD LED is the red one. It shines when SD operations are in effect.
+
+
+###########################################################################################################################
+BLUE LEDS
+
+Fairly straight forward. I lost an hour thou, because I am not used to the limitations of strongly typed data types. So int overflowed until I noticed.
