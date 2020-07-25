@@ -1,4 +1,9 @@
 void recordingMODE () {
+
+   if(recordedStatus) {
+    currentProject=recordedProject;
+   }
+   
    if(menu == 0) {
       
       if (button == 12) {
@@ -51,11 +56,11 @@ void recordingMODE () {
    }
 
     // change current project
-      if(button == 4) {
+      if(button == 4 && !recordedStatus) {
         changeProject(-1);
         }
 
-       if(button == 5) {
+       if(button == 5 && !recordedStatus) {
         changeProject(1);
         }
 

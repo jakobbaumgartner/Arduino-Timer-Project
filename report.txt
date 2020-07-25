@@ -153,4 +153,13 @@ Implemented, 10h.
 ###########################################################################################################################
 STATISTICS
 
-Need two things. Displaying stats and saving and updating stats.
+Need two things. Displaying stats and saving and updating stats. I have a lot of problems with corrupt files on SD card. I think it is card readers fault. Cant do much about it, but to always reformat SD card. 
+
+I created statistics()  function that accept argument bool increment. If it is true it will increment current project on SD card, otherwise it will just update statstics in memory.
+
+
+
+###########################################################################################################################
+SD LED
+
+SD LED is the red one. It shines when SD operations are in effect.

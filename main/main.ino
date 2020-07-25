@@ -70,6 +70,11 @@ String Statistics (bool save = false);
   int statsInt[10];
   unsigned long lastUpdated=-6000;
 
+
+  // SD
+  int SDerror= 0;
+  unsigned long SDerrorTime=-500;
+
 void setup() {
 
 
@@ -165,7 +170,18 @@ void loop() {
     
     }
 
-  
+    // blinking red light in case of SD error
+    if(SDerror != 0 && millis()-SDerrorTime>500) {
+      SDerrorTime = millis();
+      if(SDerror == 1) {
+          digitalWrite(31, HIGH);
+        SDerror=2;
+      }
+      else {
+        digitalWrite(31, LOW);
+        SDerror=1;
+        }
+    }
 
  
 

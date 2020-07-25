@@ -11,11 +11,12 @@ String projectsRead()
 
   Serial.print("Initializing SD card...");
 
+  digitalWrite(31, HIGH);
   if (!SD.begin(53))
   {
     Serial.println("ERROR");
     Serial.println("initialization failed!");
-    
+    SDerror=1;
     return "error";
   }
 
@@ -41,12 +42,14 @@ String projectsRead()
 
     // close the file:
     projectsFile.close();
+    digitalWrite(31, LOW);
   }
   else
   {
     // if the file didn't open, print an error:
     Serial.println("ERROR");
     Serial.println("error opening projects.txt");
+    SDerror=1;
   }
 
   return projekti;
@@ -67,11 +70,12 @@ int getNextID()
   int counterID;
   String counterIDString = "";
 
-  
+  digitalWrite(31, HIGH);
   if (!SD.begin(53))
   {
     Serial.println("ERROR");
     Serial.println("Error with SD card. failed!");
+    SDerror=1;
     return 0;
   }
 
@@ -118,12 +122,14 @@ int getNextID()
       Serial.println(counterID+1);
       
       counterIDFile.close();
+      digitalWrite(31, LOW);
     }
     else
     {
       // if the file didn't open, print an error:
       Serial.println("ERROR");
       Serial.println("Error writing nextID to pid.txt");
+      SDerror=1;
     }
 
     return counterID;
@@ -219,11 +225,12 @@ void saveSessionStatus () {
 
   File sessionsFile;
 
-  
+  digitalWrite(31, HIGH);
   if (!SD.begin(53))
   {
     Serial.println("ERROR");
     Serial.println("Error with SD card. failed!");
+    SDerror=1;
     return 0;
   }
 
@@ -244,12 +251,14 @@ void saveSessionStatus () {
      
       
       sessionsFile.close();
+      digitalWrite(31, LOW);
     }
     else
     {
       // if the file didn't open, print an error:
       Serial.println("ERROR");
       Serial.println("Error writing sessions!");
+      SDerror=1;
     }
 
   }
@@ -268,12 +277,13 @@ String Statistics (bool save = false) {
 
      String statsString = "";
 
-  
+  digitalWrite(31, HIGH);
     if (!SD.begin(53))
     {
       Serial.println("ERROR");
       Serial.println("Error with SD card. failed!");
       return "ERROR";
+      SDerror=1;
     }
 
 
@@ -297,7 +307,7 @@ String Statistics (bool save = false) {
         }
     
         statsFile.close();
-
+        
         Serial.println("\n" + statsString);
 
        
@@ -336,12 +346,14 @@ String Statistics (bool save = false) {
             }
           
           statsFile.close();
+          digitalWrite(31, LOW);
         }
         else
         {
           // if the file didn't open, print an error:
           Serial.println("ERROR");
           Serial.println("Error opening stats.txt");
+          SDerror=1;
         }
     
         return statsString;
