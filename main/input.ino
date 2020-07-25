@@ -63,7 +63,7 @@ int buttonPressed () {
       while(digitalRead(12)) {
         // just wait until user lifts his / her finger
       delay(5);
-      Serial.print("\nLift yer finger, ya maggot!");
+      Serial.print(".");
       }
 
       if(sum > 90) {

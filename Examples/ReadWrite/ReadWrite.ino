@@ -10,8 +10,8 @@
 
 */
 
-String FileName = "stats.txt";
-bool writing = false;
+String FileName = "PID.txt";
+bool writing = true;
 bool removefile = true;
 
 #include <SPI.h>
@@ -38,6 +38,7 @@ void setup() {
 if(removefile) {
   if(SD.remove(FileName)) {
     Serial.println("\nFile removed");}
+    
   }
 
 if (writing) {
@@ -51,10 +52,8 @@ if (writing) {
 
     // WRITE HERE:
     
-    myFile.println("1;0#");
-    myFile.println("2;0#");
-    myFile.println("3;0#");
-    myFile.println("4;0#");
+    myFile.println("0");
+    
 
 
 
