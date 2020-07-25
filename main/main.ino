@@ -22,7 +22,7 @@ int buttonPressed ();
 void changeProject(int changeDirection);
 void recordingUPDATE ();
 void recordingMODE ();
-int* Statistics (bool save = false);
+String Statistics (bool save = false);
 
 
   int button;
@@ -66,6 +66,9 @@ int* Statistics (bool save = false);
   unsigned long recordedStarted = 0;
   int lastSavedMIN = 0;
 
+  //STATISTICS
+  int statsInt[10];
+  unsigned long lastUpdated=-6000;
 
 void setup() {
 
@@ -106,12 +109,12 @@ void setup() {
   pinMode(36, OUTPUT);
   pinMode(31, OUTPUT);
 
-
+Statistics();
 }
 
 void loop() {
 
-//  Serial.print("loopAhup");
+// Serial.print("loopAhup");
 
   button=buttonPressed();
 
@@ -134,7 +137,7 @@ void loop() {
 
   // stats mode
   if(mode == 2) {
-    
+    statsMODE();
   }
 
   

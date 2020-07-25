@@ -10,9 +10,9 @@
 
 */
 
-String FileName = "sessions.txt";
+String FileName = "stats.txt";
 bool writing = false;
-bool removefile = false;
+bool removefile = true;
 
 #include <SPI.h>
 #include <SD.h>

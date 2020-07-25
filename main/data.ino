@@ -258,7 +258,7 @@ void saveSessionStatus () {
 
 
 
-int* Statistics (bool save = false) {
+String Statistics (bool save = false) {
   /*
    * This function gets statistics (total time on projects).
    * If parameter is true, than it also increments minutage or current project.
@@ -273,7 +273,7 @@ int* Statistics (bool save = false) {
     {
       Serial.println("ERROR");
       Serial.println("Error with SD card. failed!");
-      return NULL;
+      return "ERROR";
     }
 
 
@@ -300,7 +300,7 @@ int* Statistics (bool save = false) {
 
         Serial.println("\n" + statsString);
 
-        int statsInt[numberOfProjects];
+       
         int start = 0;
         int stopp = 0;
         int projectn = 0;
@@ -344,6 +344,6 @@ int* Statistics (bool save = false) {
           Serial.println("Error opening stats.txt");
         }
     
-        return statsInt;
+        return statsString;
       }
 }
