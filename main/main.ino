@@ -18,11 +18,30 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
 #include <SPI.h>
 #include <SD.h>
 
+// SET SHORTER TIME PERIODS FOR DEMONSTRATION
+bool demomode = true;
+
+  // PROTOTYPES
+String projectsRead();
+int getNextID();
+String *projectsList(String projekti);
+int numOfProjects(String projekti);
+void saveSessionStatus ();
+String Statistics (bool save = false);
+
+int buttonPressed();
+
+void blueLEDStime (bool demo = false);
+void blueLEDSOff ();
+
 int buttonPressed ();
 void changeProject(int changeDirection);
 void recordingUPDATE ();
 void recordingMODE ();
 String Statistics (bool save = false);
+
+void statsMODE();
+
 
 
   int button;
@@ -75,6 +94,9 @@ String Statistics (bool save = false);
   int SDerror= 0;
   unsigned long SDerrorTime=-500;
 
+  //LEDS
+  unsigned long LEDStime = 10*60*1000;
+
 void setup() {
 
 
@@ -114,16 +136,24 @@ void setup() {
   pinMode(36, OUTPUT);
   pinMode(31, OUTPUT);
 
-Statistics();
+  // load stats
+  Statistics();
+
+  //digitalWrite(36, HIGH);
 }
 
 void loop() {
+
+ 
 
 // Serial.print("loopAhup");
 
   button=buttonPressed();
 
-  if(recordedStatus){recordingUPDATE();}
+  if(recordedStatus){
+     recordingUPDATE();
+     blueLEDStime (demomode);}
+  else {blueLEDSOff ();}
 
   // changing mode button
   if(button == 2) {
