@@ -134,5 +134,13 @@ TIMER UPDATE
 Spent a couple of hours on updating the bloody counter. No idea what the fuck didn't work. Changed data types, changed code ... who knows. Probably something funky with the floor() function. Anyways now it works.
 
 
+###########################################################################################################################
+SESSIONS
+
+Well it worked just fine. Now it doesn't. Seems to be some kind of compiling problem. Maybe I will have to prototype functions, Arduino IDE is weird. 
+
+Anyways problem for tomorrow.
+
+I was not wrong. Turns out the way Arduino IDE compiles projects is to copy other files into the main file by alphabet order. If function is defined out of this order it doesn't work. So I used prototyping of not working functions to fix it.
 
 

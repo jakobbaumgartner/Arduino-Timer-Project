@@ -37,11 +37,12 @@ void recordingMODE () {
             lcd.setCursor(0,1);
             lcd.print(line_two);
           }
-          }
+          
 
       // to prevent starting and stopping right away
       delay(3000);
       }
+   }
 
     // change current project
       if(button == 4) {
@@ -58,7 +59,7 @@ void recordingMODE () {
       //Serial.print(recordedID);
     
     }
-}
+
 
 void changeProject(int changeDirection) {  
       if (changeDirection == -1) {

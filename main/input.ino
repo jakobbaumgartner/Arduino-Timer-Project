@@ -77,7 +77,14 @@ int buttonPressed () {
         lcd.setCursor(0,0);
         lcd.print("...");
         lcd.setCursor(0,1);
-        lcd.print("CONFIRMED.");
+         if (!recordedStatus) {
+             lcd.print("REC. STARTING ...");
+         }
+         else {
+             lcd.print("REC. STOPPING ...");
+         }
+         
+        
       }
       else {
           lcd.clear();
@@ -87,7 +94,7 @@ int buttonPressed () {
           lcd.print(line_two);
           }
         }
-      }
+
       
     
   if(buttonNumber) {

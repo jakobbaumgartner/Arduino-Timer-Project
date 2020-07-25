@@ -18,6 +18,11 @@ LiquidCrystal_I2C lcd(0x3F, 16, 2);
 #include <SPI.h>
 #include <SD.h>
 
+int buttonPressed ();
+void changeProject(int changeDirection);
+void recordingUPDATE ();
+void recordingMODE ();
+
 
   int button;
   int mode = 1;
@@ -103,9 +108,11 @@ void setup() {
 
 void loop() {
 
+//  Serial.print("loopAhup");
+
   button=buttonPressed();
 
-   if(recordedStatus){recordingUPDATE();}
+  if(recordedStatus){recordingUPDATE();}
 
   // changing mode button
   if(button == 2) {
@@ -128,15 +135,6 @@ void loop() {
   }
 
   
-
-
-
-
-
-
-
-
-
   
 
   if(line_one != line_one_old || line_two != line_two_old) {
