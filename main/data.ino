@@ -52,6 +52,10 @@ String projectsRead()
   return projekti;
 }
 
+
+
+
+
 int getNextID()
 {
 
@@ -126,6 +130,11 @@ int getNextID()
   }
 }
 
+
+
+
+
+
 String *projectsList(String projekti)
 {
   /*
@@ -173,6 +182,10 @@ String *projectsList(String projekti)
   return projectsList;
 }
 
+
+
+
+
 int numOfProjects(String projekti)
 {
   /*
@@ -193,6 +206,10 @@ int numOfProjects(String projekti)
 
   return numberOfProjects;
 }
+
+
+
+
 
 void saveSessionStatus () {
   /*
@@ -238,8 +255,95 @@ void saveSessionStatus () {
   }
 
 
-void saveStatistics () {
+
+
+
+int* Statistics (bool save = false) {
   /*
-   * This function saves statistics (total time on projects).
+   * This function gets statistics (total time on projects).
+   * If parameter is true, than it also increments minutage or current project.
    */
+
+     File statsFile;
+
+     String statsString = "";
+
+  
+    if (!SD.begin(53))
+    {
+      Serial.println("ERROR");
+      Serial.println("Error with SD card. failed!");
+      return NULL;
+    }
+
+
+    // open the file. note that only one file can be open at a time,
+    // so you have to close this one before opening another.
+  
+  
+    // Get nextID from the file
+    // open the file for reading:
+    statsFile = SD.open("stats.txt");
+   
+    if (statsFile)
+      {
+          Serial.println("\nReading stats.txt...");
+    
+        // read from the file until there's nothing else in it:
+        while (statsFile.available())
+        {
+    
+          statsString = statsFile.readString();
+        }
+    
+        statsFile.close();
+
+        Serial.println("\n" + statsString);
+
+        int statsInt[numberOfProjects];
+        int start = 0;
+        int stopp = 0;
+        int projectn = 0;
+        for(int i = 0; i<statsString.length(); i++) {
+          if(statsString[i] == ';') {start=i;}
+          if(statsString[i] == '#') {stopp=i;
+          
+          statsInt[projectn] = (statsString.substring(start+1, stopp)).toInt();
+    
+          projectn++;
+          }
+          
+        }
+    
+    
+        Serial.println("\nRemoving stats.txt...");
+        SD.remove("stats.txt");
+    
+        Serial.println("\nCreating stats.txt and writing new stats in it.");
+        statsFile = SD.open("stats.txt", FILE_WRITE);
+    
+        if (statsFile)
+        {
+          Serial.println("");
+          for(int i = 0; i < numberOfProjects; i++) {
+            if(recordedProject==i && save) {
+              // increment recording project minutage
+                statsInt[i]=statsInt[i]+1;
+                Serial.println("\nIncrementing stats.");
+              }
+            statsFile.println(String(i+1) + ";" + String(statsInt[i]) + "#");
+            Serial.print(String(i+1) + ": " + String(statsInt[i]) + " - ");
+            }
+          
+          statsFile.close();
+        }
+        else
+        {
+          // if the file didn't open, print an error:
+          Serial.println("ERROR");
+          Serial.println("Error opening stats.txt");
+        }
+    
+        return statsInt;
+      }
 }

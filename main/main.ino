@@ -22,6 +22,7 @@ int buttonPressed ();
 void changeProject(int changeDirection);
 void recordingUPDATE ();
 void recordingMODE ();
+int* Statistics (bool save = false);
 
 
   int button;
@@ -41,6 +42,7 @@ void recordingMODE ();
    * 1 ... menu page
    */
 
+  // SCREEN
   // Message should not be longer than 16 chars or it should be in two lines.
   String line_one = "";
   String line_two = "";
@@ -48,7 +50,7 @@ void recordingMODE ();
   String line_two_old = "";
   bool screen_interrupt = false;
 
-  // Projects 
+  // PROJECTS 
   String* listOfProjects = NULL;
   int numberOfProjects = 0;
   // currently open project
@@ -56,13 +58,13 @@ void recordingMODE ();
 
   //RECORDING
 
-    bool recordedStatus = false;
-    int recordedID = NULL;
-     // time recorded h/m/s
-    int recordedTime[3]= {0,0,0};
-    int recordedProject= NULL;
-    unsigned long recordedStarted = NULL;
-    int lastSavedMIN = 0;
+  bool recordedStatus = false;
+  int recordedID = 0;
+   // time recorded h/m/s
+  int recordedTime[3]= {0,0,0};
+  int recordedProject= 0;
+  unsigned long recordedStarted = 0;
+  int lastSavedMIN = 0;
 
 
 void setup() {

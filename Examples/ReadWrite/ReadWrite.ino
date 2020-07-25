@@ -10,6 +10,10 @@
 
 */
 
+String FileName = "sessions.txt";
+bool writing = false;
+bool removefile = false;
+
 #include <SPI.h>
 #include <SD.h>
 
@@ -31,26 +35,46 @@ void setup() {
   }
   Serial.println("initialization done.");
 
-  // open the file. note that only one file can be open at a time,
+if(removefile) {
+  if(SD.remove(FileName)) {
+    Serial.println("\nFile removed");}
+  }
+
+if (writing) {
+    // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
-  myFile = SD.open("test.txt", FILE_WRITE);
+  myFile = SD.open(FileName, FILE_WRITE);
 
   // if the file opened okay, write to it:
   if (myFile) {
-    Serial.print("Writing to test.txt...");
-    myFile.println("testing 1, 2, 3.");
+    Serial.print("Writing to " + FileName);
+
+    // WRITE HERE:
+    
+    myFile.println("1;0#");
+    myFile.println("2;0#");
+    myFile.println("3;0#");
+    myFile.println("4;0#");
+
+
+
+
+
+    
     // close the file:
     myFile.close();
     Serial.println("done.");
   } else {
     // if the file didn't open, print an error:
-    Serial.println("error opening test.txt");
+    Serial.println("error opening " + FileName);
+  }
+
   }
 
   // re-open the file for reading:
-  myFile = SD.open("test.txt");
+  myFile = SD.open(FileName);
   if (myFile) {
-    Serial.println("test.txt:");
+    Serial.println(FileName);
 
     // read from the file until there's nothing else in it:
     while (myFile.available()) {
@@ -60,7 +84,7 @@ void setup() {
     myFile.close();
   } else {
     // if the file didn't open, print an error:
-    Serial.println("error opening test.txt");
+    Serial.println("error opening " + FileName);
   }
 }
 

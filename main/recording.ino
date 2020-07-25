@@ -98,9 +98,10 @@ void recordingUPDATE () {
 
    if(lastSavedMIN<recordedTime[1] && !screen_interrupt) {
     saveSessionStatus();
+    Statistics(true);
     lastSavedMIN++;
 
-    if (lastSavedMIN>0) {
+    if (lastSavedMIN>600) {
           // stop recording
            //saveSessionStatus();
            recordedStatus = false;
