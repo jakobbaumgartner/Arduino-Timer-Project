@@ -80,19 +80,19 @@ void statsMODE();
   bool recordedStatus = false;
   int recordedID = 0;
    // time recorded h/m/s
-  int recordedTime[3]= {0,0,0};
+  unsigned long recordedTime[3]= {0,0,0};
   int recordedProject= 0;
   unsigned long recordedStarted = 0;
   int lastSavedMIN = 0;
 
   //STATISTICS
   int statsInt[10];
-  unsigned long lastUpdated=-6000;
+  long lastUpdated=-6000;
 
 
   // SD
   int SDerror= 0;
-  unsigned long SDerrorTime=-500;
+  long SDerrorTime=-500;
 
   //LEDS
   unsigned long LEDStime = 10*60*1000;

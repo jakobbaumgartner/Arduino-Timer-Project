@@ -30,7 +30,7 @@ int buttonPressed () {
     delay(250);
     }
 
-  if(digitalRead(12)) {
+  if(digitalRead(12) && mode==1) {
 
     /* 
      *  In case of button 12 which is conformation button we do smtg else. The button is activated only if it is pressed enough time.

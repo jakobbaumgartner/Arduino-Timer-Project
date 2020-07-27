@@ -56,15 +56,15 @@ void recordingMODE () {
    }
 
     // change current project
-      if(button == 4 && !recordedStatus) {
+      if (button == 4 && !recordedStatus) {
         changeProject(-1);
         }
 
-       if(button == 5 && !recordedStatus) {
+       if (button == 5 && !recordedStatus) {
         changeProject(1);
         }
 
-      if(!screen_interrupt) {
+      if (!screen_interrupt) {
           line_one = listOfProjects[currentProject];
           line_two = String(recordedTime[0]) + "h : " + String(recordedTime[1]) + "m : " + String(recordedTime[2]) + "s";
         
@@ -97,8 +97,8 @@ void recordingUPDATE () {
 //    Serial.print(millis());
    
     unsigned long timern = millis();
-    recordedTime[0] = (timern-recordedStarted)/3600000;
-    recordedTime[1] = (timern-recordedStarted)/60000;
+    recordedTime[0] = floor((timern-recordedStarted)/3600000);
+    recordedTime[1] = floor((timern-recordedStarted)/60000)-recordedTime[0]*60;
     recordedTime[2] = floor((timern-recordedStarted)/1000)-recordedTime[1]*60-recordedTime[0]*3600;
 
    if(lastSavedMIN<recordedTime[1] && !screen_interrupt) {

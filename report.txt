@@ -169,3 +169,19 @@ SD LED is the red one. It shines when SD operations are in effect.
 BLUE LEDS
 
 Fairly straight forward. I lost an hour thou, because I am not used to the limitations of strongly typed data types. So int overflowed until I noticed.
+
+
+###########################################################################################################################
+BUG MINUTES OVERFLOW - SOLVED
+
+There is some kind of overflow bug. Because when the time goes over one hour it overflows. Or something else. 
+
+Steps to solve it:
+1. reproduce the bug in smaller program, isolated,
+2. find the solution,
+3. test in full program.
+
+The problem seems to be twofold. The first one was wrong datatype for saving time (int instead of unsigned long) and the second on seems to be a bug in recordingUPDATE() function that increments minutes.
+
+
+BUG FAKE STATS MENU RECORDING 
