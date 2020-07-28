@@ -1,5 +1,9 @@
 void recordingMODE () {
 
+  /*
+  * Navigation in recordingMode and starting, stopping recording.
+  */
+
    if(recordedStatus) {
     currentProject=recordedProject;
    }

@@ -41,8 +41,10 @@ void recordingMODE ();
 String Statistics (bool save = false);
 
 void statsMODE();
+void SDError ();
 
 
+// MENU
 
   int button;
   int mode = 1;
@@ -120,7 +122,8 @@ void setup() {
   listOfProjects =  projectsList(projekti);
   numberOfProjects = numOfProjects(projekti);
 
-
+  // load stats
+  Statistics();
 
   // set input pins
   pinMode(2, INPUT);
@@ -136,9 +139,6 @@ void setup() {
   pinMode(34, OUTPUT);
   pinMode(36, OUTPUT);
   pinMode(31, OUTPUT);
-
-  // load stats
-  Statistics();
 
   //digitalWrite(36, HIGH);
 }
@@ -201,18 +201,12 @@ void loop() {
     
     }
 
-    // blinking red light in case of SD error
-    if(SDerror != 0 && millis()-SDerrorTime>500) {
-      SDerrorTime = millis();
-      if(SDerror == 1) {
-          digitalWrite(31, HIGH);
-        SDerror=2;
-      }
-      else {
-        digitalWrite(31, LOW);
-        SDerror=1;
-        }
+// blinking red light in case of SD error
+    if (SDerror != 0) {
+      SDError();
     }
+    
+ 
 
  
 

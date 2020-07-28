@@ -37,3 +37,17 @@ void blueLEDSOff () {
   digitalWrite(34, LOW);
   digitalWrite(36, LOW);
 }
+
+void SDError () {
+     if(millis()-SDerrorTime>500) {
+      SDerrorTime = millis();
+      if(SDerror == 1) {
+          digitalWrite(31, HIGH);
+        SDerror=2;
+      }
+      else {
+        digitalWrite(31, LOW);
+        SDerror=1;
+        }
+    }
+}
