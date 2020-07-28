@@ -134,6 +134,13 @@ int getNextID()
 
     return counterID;
   }
+   else
+    {
+      // if the file didn't open, print an error:
+      Serial.println("ERROR");
+      Serial.println("Error writing nextID to pid.txt");
+      SDerror=1;
+    }
 }
 
 

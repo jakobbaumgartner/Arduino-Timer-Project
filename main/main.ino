@@ -59,6 +59,7 @@ void statsMODE();
    * This variable is used for opening menu. 
    * 0 menu closed
    * 1 ... menu page
+   * 2 ...
    */
 
   // SCREEN

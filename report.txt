@@ -184,4 +184,4 @@ Steps to solve it:
 The problem seems to be twofold. The first one was wrong datatype for saving time (int instead of unsigned long) and the second on seems to be a bug in recordingUPDATE() function that increments minutes.
 
 
-BUG FAKE STATS MENU RECORDING 
+BUG FAKE STATS MENU RECORDING - SOLVED
